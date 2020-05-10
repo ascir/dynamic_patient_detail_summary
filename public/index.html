@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Escriber Sample</title>
+    <script type="text/javascript">
+      function printDiv(divName) {
+          var printContents = document.getElementById(divName).innerHTML;
+          w=window.open();
+          w.document.write(printContents);
+          w.print();
+          w.close();
+      }
+    </script>
+
+
+
+</head>
+<body>
+  <div id='print-content'>
+ <div class = "row">
+     <div class = "column">
+        <img src = "./images/escriber-logo.png" alt = "escriber logo" width="200" height="170" />
+     </div>
+    <div class = "column">
+        <h1>Patient Details</h1>
+    </div>
+ </div>
+ <div class= "aligncenter">
+    <table>
+        <tr>
+          <th> </th>
+          <th>Patient Details</th>
+        </tr>
+        <tr>
+          <td>Name</td>
+          <td>
+            <p id="name"></p>
+          </td>
+        </tr>
+        <tr>
+          <td>Date Of Birth</td>
+          <td>
+            <p id="dob"></p>
+          </td>
+        </tr>
+        <td>Gender</td>
+        <td>
+          <p id="gender"></p>
+        </td>
+        <tr>
+          <td>Phone number</td>
+          <td><p id= "pno"></p></td>
+
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>maria.adam@gmail.com</td>
+   
+        </tr>
+        <tr>
+          <td>Address</td>
+          <td>#13, Coulter Nile Layout, HSR Road, Bangalore<br><a href ="https://www.google.com/maps/dir/12.8484617,77.7108679/dayananda+sagar+university/@12.8769258,77.4795499,11z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3bae14b1d3b5bc97:0x201eccba58e7911b!2m2!1d77.565569!2d12.9072339" target="_blank">View in Google Maps</a></td>
+
+        </tr>
+    
+        <tr>
+          <td>Symptoms</td>
+          <td>Fever, Headache, Cold, Chills</td>
+        </tr>
+        <tr>
+          <td>Appointment Set</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <td>Appointment Date, Time</td>
+          <td><p id = "appt"></p></td>
+        </tr>
+        <tr>
+          <td>Docotor Details</td>
+          <td>Doctor Raman, Appolo Hospitals, Bannerghatta</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+    <input type="button"  value="Print this page" onClick="printDiv('print-content')">
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+ 
+  var firebaseConfig = {
+    apiKey: "AIzaSyAxvcCMRnQJyjSzAyNqDlUc8Q6nUwJKze0",
+    authDomain: "doctor-escriber-walwwx.firebaseapp.com",
+    databaseURL: "https://doctor-escriber-walwwx.firebaseio.com",
+    projectId: "doctor-escriber-walwwx",
+    storageBucket: "doctor-escriber-walwwx.appspot.com",
+    messagingSenderId: "375908536721",
+    appId: "1:375908536721:web:4955b18584255411ddca30"
+  };
+  // Initialize Firebase
+  console.log(firebase)
+  firebase.initializeApp(firebaseConfig);
+  //var db = firebase.firestore();
+  var ref = firebase.database().ref('Patient_details');
+  firebase.database().ref('Patient_details/Name').on('value',(snap)=>{
+    document.getElementById("name").innerHTML= snap.val(); 
+  });
+  firebase.database().ref('Patient_details/DateOfBirth').on('value',(snap)=>{
+    document.getElementById("dob").innerHTML= snap.val(); 
+  });
+  firebase.database().ref('Patient_details/Gender').on('value',(snap)=>{
+    document.getElementById("gender").innerHTML= snap.val(); 
+  });
+  firebase.database().ref('Patient_details/PhoneNumber').on('value',(snap)=>{
+    document.getElementById("pno").innerHTML= snap.val(); 
+  });
+  firebase.database().ref('Appointment/Date').on('value',(snap)=>{
+    document.getElementById("appt").innerHTML= snap.val(); 
+  });
+// ref.once("value")
+//   .then(function(snapshot) {
+//     snapshot.forEach(function(childSnapshot) {
+//       var childData = childSnapshot.val();              // childData will be the actual contents of the child
+
+//       var name_val = childSnapshot.val().Name;
+//       var dob_val = childSnapshot.val().DateOfBirth;
+//       document.getElementById("name").innerHTML = name_val;
+//       document.getElementById("id").innerHTML = dob_val;
+//       $("#name").append(name_val);
+//   });
+//  });
+</script>
+
+</body>
+
+</html>
